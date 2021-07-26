@@ -176,7 +176,7 @@ class Inicio:
         #cerrar venatana 
         self.Vcol.withdraw()
         #LLamar a la funcion usuario nuevamente
-        obj.DatosCliente()
+        obj.Bancos()
         
     def Seleccionarcol(self):
        self.monitor.config(text="{}".format(self.opcionpagcol.get()))
