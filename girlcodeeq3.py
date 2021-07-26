@@ -21,12 +21,31 @@ class Inicio:
         # Label 
         Label(ventanapeticion,text="Bienvenido a Pay-O",font=("Bahnschrift SemiBold Condensed",30,ITALIC,BOLD),bg="#E2C4E1",fg="#271F26",width="60",height=4,bd=12,relief=RAISED ).pack()
         # crear Boton que cuando se haga click empiece la función Usuario
-        botonprimero=Button(ventanapeticion,text='Siguiente',command=self.Datocuenta)
+        botonprimero=Button(ventanapeticion,text='Siguiente',command=self.Bancos)
         botonprimero.pack()
+
+
+    def Bancos(self): 
+        # Cerrar ventana 
+        ventanapeticion.withdraw()
+        #ventana Productos
+        self.bancos=tk.Toplevel()
+        # medidas de la ventana
+        self.bancos.geometry('400x600')
+        self.bancos.config(bd=20,bg="#8469AE")
+        self.bancos.title("Bancos")
+        # Label
+        Label(self.bancos,text="Elige el Banco a pagar tu crédito",font=("Bahnschrift SemiBold Condensed",20,ITALIC,BOLD),bg="#E2C4E1",fg="#271F26",bd=10,relief=RAISED, width=60).pack()
+        listbanco=LabelFrame(self.bancos, text="Lista de bancos permitidos", font=("Bodoni Bd BT", 12),bg="#9F5195", fg="white", relief=RIDGE, bd=10)
+        listbanco.place(x=5, y=100,relwidth=1)
+
+        Button(listbanco, text="Banco Colpatria", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black",command=self.Consultarcol).grid(row=0, column=0, padx=100, pady=10) 
+        Button(listbanco, text="Banco Bancolombia", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black").grid(row=1, column=0, padx=100, pady=10)
+        Button(listbanco, text="Banco Occiedente", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black",).grid(row=2, column=0, padx=100, pady=10) 
 
     def Datocuenta(self):
         # Cerrar ventana principal
-        ventanapeticion.withdraw()
+        self.bancos.withdraw()
         self.datcl=tk.Toplevel()
         # medidas de la ventana
         self.datcl.geometry('400x400')
@@ -59,29 +78,11 @@ class Inicio:
 
         Label(datcliente, text="Ingresa El numero de tu cuenta", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black").grid(row=0, column=0, padx=10, pady=10) 
         Entry(datcliente, borderwidth=3, width=30,textvariable=self.numero_cuentaCol, bg="#E2C4E1", fg="black").grid(row=1, column=0, padx=10, pady=10)
-        Button(datcliente,text='Siguiente',command=self.Bancos).grid(row=2, column=0, padx=10, pady=10)
+        Button(datcliente,text='Siguiente',command=self.FacturaColp).grid(row=2, column=0, padx=10, pady=10)
     
-
-    def Bancos(self): 
-        # Cerrar ventana 
-        self.datcl.withdraw()
-        #ventana Productos
-        self.bancos=tk.Toplevel()
-        # medidas de la ventana
-        self.bancos.geometry('400x600')
-        self.bancos.config(bd=20,bg="#8469AE")
-        self.bancos.title("Bancos")
-        # Label
-        Label(self.bancos,text="Elige el Banco a pagar tu crédito",font=("Bahnschrift SemiBold Condensed",20,ITALIC,BOLD),bg="#E2C4E1",fg="#271F26",bd=10,relief=RAISED, width=60).pack()
-        listbanco=LabelFrame(self.bancos, text="Lista de bancos permitidos", font=("Bodoni Bd BT", 12),bg="#9F5195", fg="white", relief=RIDGE, bd=10)
-        listbanco.place(x=5, y=100,relwidth=1)
-
-        Button(listbanco, text="Banco Colpatria", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black",command=self.Consultarcol).grid(row=0, column=0, padx=100, pady=10) 
-        Button(listbanco, text="Banco Bancolombia", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black").grid(row=1, column=0, padx=100, pady=10)
-        Button(listbanco, text="Banco Occiedente", font=("Bodoni Bd BT", 14), bg="#E2C4E1", fg="black",).grid(row=2, column=0, padx=100, pady=10) 
        
     def Consultarcol(self):
-        self.FacturaColp()
+        self.Datocuenta()
         # Por medio de este código se busca obtener la información en las bases de datos
         """n_cuenta=(self.numero_cuentacol.get(), )
         respuesta=self.cuentacl.encontrar(n_cuenta)
@@ -98,7 +99,7 @@ class Inicio:
 
     def FacturaColp(self):
          # Cerrar ventana anterior
-        self.bancos.withdraw()
+        self.datcl.withdraw()
         #  ventana Productos
         self.Vcol=tk.Toplevel()
         #  medidas de la ventana
@@ -270,4 +271,5 @@ ventanapeticion=tk.Tk()
 obj=Inicio(ventanapeticion)
 #se inicia el bucle
 ventanapeticion.mainloop()
+
 
