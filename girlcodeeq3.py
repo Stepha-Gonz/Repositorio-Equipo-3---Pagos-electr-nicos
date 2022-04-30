@@ -35,7 +35,7 @@ class Inicio:
         self.bancos.config(bd=20,bg="#8469AE")
         self.bancos.title("Bancos")
         # Label
-        Label(self.bancos,text="Elige el Banco a pagar tu crédito",font=("Bahnschrift SemiBold Condensed",20,ITALIC,BOLD),bg="#E2C4E1",fg="#271F26",bd=10,relief=RAISED, width=60).pack()
+        Label(self.bancos,text="Elige el Banco donde quieres pagar tu crédito",font=("Bahnschrift SemiBold Condensed",20,ITALIC,BOLD),bg="#E2C4E1",fg="#271F26",bd=10,relief=RAISED, width=60).pack()
         listbanco=LabelFrame(self.bancos, text="Lista de bancos permitidos", font=("Bodoni Bd BT", 12),bg="#9F5195", fg="white", relief=RIDGE, bd=10)
         listbanco.place(x=5, y=100,relwidth=1)
 
